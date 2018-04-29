@@ -1,0 +1,30 @@
+.kat-pilih {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 15px;
+    margin-bottom: 15px; 
+    position: relative;
+    box-shadow: 5px 5px 30px rgba(99, 117, 138, 0.3);
+    border-radius: 7px;
+
+}
+.kat-pilih> img {
+  width: 250px;
+  height: 350px;
+  display: block;
+  width: 100%;
+}
+.kat-pilih> h6 {
+    text-align: center;
+}
+.kat-pilih.empty-box::after {
+    /* box visible as placeholder when the .cd-quick-view zooms in */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #392c3f;
+  }

@@ -1,0 +1,9 @@
+.footer{
+    color: white;
+    border-top: 8px solid crimson;
+    background-color: #ffd1d1;
+}
+.footer .text-center{
+    padding-top: 5px;
+}
+
