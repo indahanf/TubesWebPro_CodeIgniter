@@ -1,68 +1,70 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-    <link rel = "stylesheet" type = "text/css" 
-         href = "<?php echo base_url(); ?>assets/css/myaccount.css"> 
-  <title>Daftar Member</title>
-    <meta charset="utf-8">
-</head>
+<?php
+$this->load->view('head');
+//isi dengan meload view header
+
+?>
 <body>
 
-    <?php if (isset($error)) {
-      echo $error;
-    } ?>
-    <?php echo form_open_multipart('c_akun/createAkun'); ?>
- 
- <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <!-- Form register -->
-                            <form>
-                                <h2 class="text-center font-up font-bold deep-orange-text py-4">Sign up</h2>
-                                <div class="md-form">
-                                    <i class="fa fa-user prefix grey-text"></i>
-                                    <input name="nama" type="text" id="orangeForm-name3" class="form-control" required/>
-                                    <label for="orangeForm-name3">Your name</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-user prefix grey-text"></i>
-                                    <input name="username" type="text" id="orangeForm-name3" class="form-control" required/>
-                                    <label for="orangeForm-name3">Your Username</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-envelope prefix grey-text"></i>
-                                    <input name="email" type="email" id="orangeForm-email3" class="form-control" required/>
-                                    <label for="orangeForm-email3">Your Email</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-lock prefix grey-text"></i>
-                                    <input name="password" type="password" id="orangeForm-pass3" class="form-control" required/>
-                                    <label for="orangeForm-pass3">Your Password</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-user prefix grey-text"></i>
-                                    <input name="alamat" type="text" id="orangeForm-name3" class="form-control">
-                                    <label for="orangeForm-name3" required/>Your Address</label>
-                                </div>
-                                <div class="text-center">
-                                    <button class="btn btn-deep-orange" name="submit" value="submit" >Sign Up<i class="fa fa-angle-double-right pl-2" aria-hidden="true"></i></button>
-                                </div>
-                            </form>
-                            <!-- Form register -->
-                        </div>
-                    </div>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <?php $atribut = array(
+                'class' => 'login100-form validate-form p-l-55 p-r-55 p-t-178'
+            );?>
+            <?php
+            echo form_open("c_akun/daftar_akun",$atribut);
+//            isi dengan form_open ke controller Akun_C dengan method daftar_akun
+            echo "<center>".$this->session->flashdata('info')."</center><br>";
+            ?>
+                    <span class="login100-form-title">
+                        Daftar
+                    </span>
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter nama">
+                    <input class="input100" type="text" required name="nama" placeholder="Nama">
+                    <span class="focus-input100"></span>
                 </div>
-  
-</body>
-</html>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+                    <input class="input100" type="text" required name="username" placeholder="Username">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter email">
+                    <input class="input100" type="text" required name="email" placeholder="Email">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate = "Please enter password">
+                    <input class="input100" type="password" required name="password" placeholder="Password">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter alamat">
+                    <input class="input100" type="text" required name="alamat" placeholder="Alamat">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <br>
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">
+                        Daftar
+                    </button>
+                </div>
+
+                <div class="flex-col-c p-t-170 p-b-40">
+                        <span class="txt1 p-b-9">
+                            Punya Akun?
+                        </span>
+
+                    <a href="<?php echo site_url('c_akun/index') ?>" class="txt3">
+                        Login Langsung
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php
+//disini load view footer
+$this->load->view('footer'); ?>

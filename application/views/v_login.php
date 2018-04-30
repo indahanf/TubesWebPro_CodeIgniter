@@ -1,50 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Login</title>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-   	<link rel = "stylesheet" type = "text/css" 
-         href = "<?php echo base_url(); ?>assets/css/myaccount.css"> 
-</head>
-<body class="hm-gradient">
-<?php if (isset($error)) {
-	echo $error;
-} ?>
+<?php
+$this->load->view('head');
+//2. disini tampilkan flashdata dari controller
+if ($this->session->set_flashdata('alert')=='berhasil_daftar') {
+     echo "<script>alert('Daftar berhasil');</script>";
+} elseif ($this->session->set_flashdata('alert')=='gagal_login') {
+    echo "<script>alert('Daftar gagal');</script>";
+}
+?>
 
-<form method="post" action="<?php echo base_url()?>index.php/c_akun/index">
-<div class="row">
-<div class="col">
-    <div class="card">
-		<div class="card-body">
-            <h3 class="text-center default-text py-3"><i class="fa fa-lock"></i> Login:</h3>
-              <!--Body-->
-                <div class="md-form">
-                    <i class="fa fa-envelope prefix grey-text"></i>
-                        <input name="username" type="text"  id="defaultForm-email" class="form-control">
-                            <label for="defaultForm-email">Your email</label>
-                         </div>
-                        <div class="md-form">
-                             <i class="fa fa-lock prefix grey-text"></i>
-                             <input  name="password" type="password" id="defaultForm-pass" class="form-control">
-                             <label for="defaultForm-pass">Your password</label>
-                        </div>
-                        <div class="text-center">
-                            <button class="btn btn-default waves-effect waves-light" name="submit">Login</button>
-                        </div>
+<body>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <?php $atribut = array(
+                'class' => 'login100-form validate-form p-l-55 p-r-55 p-t-178'
+            );?>
+            <?php
+            echo form_open("c_akun/cek_login",$atribut);
+            //2.            isi dengan form_open ke controller Akun_C dengan method cek_login
+
+
+            ?>
+                    <span class="login100-form-title">
+                        Login
+                    </span>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+                    <input class="input100" type="text" required name="username" placeholder="Username">
+                    <span class="focus-input100"></span>
                 </div>
+
+                <div class="wrap-input100 validate-input" data-validate = "Please enter password">
+                    <input class="input100" type="password" required name="password" placeholder="Password">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <br>
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">
+                        Sign in
+                    </button>
+                </div>
+
+                <div class="flex-col-c p-t-170 p-b-40">
+                        <span class="txt1 p-b-9">
+                            Ga Punya Akun?
+                        </span>
+
+                    <a href="<?php echo site_url('c_akun/v_regist') ?>" class="txt3">
+                        Daftar Dulu Sekarang
+                    </a>
+                </div>
+            </form>
         </div>
+    </div>
 </div>
-</div>
-<a href="<?php echo base_url()?>index.php/c_akun/createAkun">Registrasi</a>
-</form>
-</body>
-</html>
+
+<?php
+$this->load->view('footer'); ?>
