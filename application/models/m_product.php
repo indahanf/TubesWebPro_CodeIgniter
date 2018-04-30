@@ -8,9 +8,15 @@ class m_product extends CI_Model
 
 	public function get_data($category)
 	{
+		$this->db->select('*');
+		$this->db->from($category);
 
-		$query = $this->db->get($category);
-		return $query->result();
+		$query = $this->db->get();
+		return $query->result_array();
+
+
+/*		$query = $this->db->get($category);
+		return $query->result();*/
 	}
 
 }

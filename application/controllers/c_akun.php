@@ -9,7 +9,7 @@ class c_akun extends CI_Controller {
 		parent::__construct();
 		$this->load->model('akun');
 		$this->load->model('m_product');
-		$this->load->helper('url');
+		$this->load->helper('form','url');
 
 	}
 	public function index(){
@@ -17,7 +17,7 @@ class c_akun extends CI_Controller {
 		if($this->session->userdata('level')){
 			if ($this->session->userdata('level') == 'admin') {
 				$this->load->view('head');
-				 $this->load->view('v_admin'); //belom ada
+				$this->load->view('v_admin'); //belom ada
 			}
 			if ($this->session->userdata('level') == 'member') {
 				$this->load->view('head');
@@ -55,6 +55,7 @@ class c_akun extends CI_Controller {
 					      $this->session->set_flashdata('login', 'login gagal');
 					      $this->load->view('head');
 					      $this->load->view('v_login');
+
 				  	 	}
 		
 			}   		
@@ -67,9 +68,8 @@ class c_akun extends CI_Controller {
 			$password = $this->input->post('password');
 			$nama = $this->input->post('nama');
 			$alamat = $this->input->post('alamat');
-			$photo = $this->input->post('photo');
 
-			$this->akun->akunRegister($username, $email, $passoword,$nama, $alamat,$photo);
+			$this->akun->akunRegister($username, $email, $password, $nama, $alamat);
         	$this->session->set_flashdata('pesan', 'Create Member Berhasil');
         	$this->load->view('v_login');			
 		}
